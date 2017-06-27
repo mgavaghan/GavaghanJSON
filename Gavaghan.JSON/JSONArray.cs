@@ -33,7 +33,7 @@ namespace Gavaghan.JSON
     /// Create a new JSONArray.
     /// </summary>
     /// <param name="factory"></param>
-    protected JSONArray(JSONValueFactory factory)
+    public JSONArray(JSONValueFactory factory)
     {
       mValue = new List<IJSONValue>();
       mFactory = factory;

@@ -23,7 +23,7 @@ namespace Gavaghan.JSON
     /// Create a new JSONObject
     /// </summary>
     /// <param name="factory">the factory implementation used to read values in the object</param>
-    protected JSONObject(JSONValueFactory factory)
+    public JSONObject(JSONValueFactory factory)
     {
       mFactory = factory;
     }
