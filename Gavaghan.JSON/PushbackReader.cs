@@ -43,7 +43,7 @@ namespace Gavaghan.JSON
     /// </summary>
     /// <param name="c">character to unread</param>
     /// <exception cref="System.IO.IOException">if pushback buffer is full</exception>
-    public void unread(int c)
+    public void Unread(int c)
     {
       if (mIndex == 0) throw new IOException("Pushback buffer overflow");
 

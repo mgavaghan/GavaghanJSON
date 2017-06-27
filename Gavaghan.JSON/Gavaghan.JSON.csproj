@@ -45,8 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractJSONValue.cs" />
     <Compile Include="IJSONValue.cs" />
     <Compile Include="JSONException.cs" />
+    <Compile Include="JSONNull.cs" />
+    <Compile Include="JSONString.cs" />
+    <Compile Include="JSONValueFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PushbackReader.cs" />
   </ItemGroup>

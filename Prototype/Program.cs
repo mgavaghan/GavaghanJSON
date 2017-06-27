@@ -11,12 +11,12 @@ namespace Prototype
   {
     static void Main(string[] args)
     {
-      StringReader rdr = new StringReader("ABCDEFGHIJ");
+      StringReader rdr = new StringReader("\"abc\u0058\"");
       PushbackReader pbr = new PushbackReader(rdr, 2);
-      char[] buf = new char[3];
-      int got;
 
-      Console.WriteLine(pbr.ReadLine());
+      JSONString json = new JSONString("abc\u00F8");
+
+      Console.WriteLine(json.ToString());
 
       Console.ReadLine();
     }

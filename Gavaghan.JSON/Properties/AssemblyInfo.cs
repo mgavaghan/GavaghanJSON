@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Gavaghan.JSON")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Extendable JSON Library")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("CA Technologies")]
+[assembly: AssemblyCompany("Mike Gavaghan")]
 [assembly: AssemblyProduct("Gavaghan.JSON")]
-[assembly: AssemblyCopyright("Copyright © CA Technologies 2017")]
+[assembly: AssemblyCopyright("Released under Apache License Version 2.0")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
