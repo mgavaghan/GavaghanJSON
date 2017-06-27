@@ -11,10 +11,11 @@ namespace Prototype
   {
     static void Main(string[] args)
     {
-      StringReader rdr = new StringReader("\"abc\u0058\"");
-      PushbackReader pbr = new PushbackReader(rdr, 2);
+      JSONObject json = new JSONObject();
 
-      JSONString json = new JSONString("abc\u00F8");
+      json.Add("special", new JSONBoolean(true));
+      json.Add("number", new JSONNull());
+      json.Add("color", new JSONString("red"));
 
       Console.WriteLine(json.ToString());
 

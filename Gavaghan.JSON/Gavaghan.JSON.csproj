@@ -47,8 +47,11 @@
   <ItemGroup>
     <Compile Include="AbstractJSONValue.cs" />
     <Compile Include="IJSONValue.cs" />
+    <Compile Include="JSONArray.cs" />
+    <Compile Include="JSONBoolean.cs" />
     <Compile Include="JSONException.cs" />
     <Compile Include="JSONNull.cs" />
+    <Compile Include="JSONObject.cs" />
     <Compile Include="JSONString.cs" />
     <Compile Include="JSONValueFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

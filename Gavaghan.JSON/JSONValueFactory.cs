@@ -61,5 +61,10 @@ namespace Gavaghan.JSON
       if (c < 0) throw new JSONException("$", "Out of data while reading JSON object.");
       return (char)c;
     }
+
+    public IJSONValue Read(string path, PushbackReader pbr)
+    {
+      throw new NotImplementedException();
+    }
   }
 }
