@@ -51,6 +51,7 @@
     <Compile Include="JSONBoolean.cs" />
     <Compile Include="JSONException.cs" />
     <Compile Include="JSONNull.cs" />
+    <Compile Include="JSONNumber.cs" />
     <Compile Include="JSONObject.cs" />
     <Compile Include="JSONString.cs" />
     <Compile Include="JSONValueFactory.cs" />
