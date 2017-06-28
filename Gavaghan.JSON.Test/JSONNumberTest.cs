@@ -139,7 +139,7 @@ namespace Gavaghan.JSON.Test
         JSONNumber number = new JSONNumber();
         number.Read("$", pbr);
 
-        Assert.AreEqual("1.23E+4", number.Value.ToString());
+        Assert.AreEqual("12300", number.Value.ToString());
       }
     }
 
