@@ -170,7 +170,7 @@ namespace Gavaghan.JSON
         else if (c == '\t') builder.Append("\\t");
         else
         {
-          string hex = ((int)c).ToString("X4");
+          string hex = ((int)c).ToString("X4").ToLower();
           hex = hex.Substring(hex.Length - 4);
 
           builder.Append("\\u");
