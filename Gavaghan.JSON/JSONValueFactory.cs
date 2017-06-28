@@ -23,7 +23,7 @@ namespace Gavaghan.JSON
     /// <returns></returns>
     static public bool IsWhitespace(int c)
     {
-      return "\t\n\u000B\f\r\u001C\u001D\u001E\u001F\u000C\u000D\u000E".IndexOf((char)c) >= 0;
+      return " \t\n\u000B\f\r\u001C\u001D\u001E\u001F\u000C\u000D\u000E".IndexOf((char)c) >= 0;
     }
 
     /// <summary>

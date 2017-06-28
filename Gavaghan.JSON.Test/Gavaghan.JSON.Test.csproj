@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JSONObjectTest.cs" />
     <Compile Include="JSONNumberTest.cs" />
     <Compile Include="JSONStringTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,6 +62,11 @@
   </ItemGroup>
   <ItemGroup>
     <Shadow Include="Test References\Gavaghan.JSON.accessor" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="JSONObjectTest.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
