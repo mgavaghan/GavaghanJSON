@@ -66,6 +66,32 @@ namespace Gavaghan.JSON
     }
 
     /// <summary>
+    /// Create a prototype instance of the same type.
+    /// </summary>
+    public override IJSONValue CreatePrototype()
+    {
+      return new JSONArray();
+    }
+
+    /// <summary>
+    /// Copy the value of another IJSONValue into our underlying value.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public override void CopyValue(IJSONValue value)
+    {
+      if (!GetType().IsAssignableFrom(value.GetType())) throw new Exception("Can't assign a " + value.GetType().Name + " to a " + GetType().Name);
+
+      IList<IJSONValue> source = (IList<IJSONValue>)value.Value;
+      mValue = new List<IJSONValue>();
+
+      foreach (IJSONValue json in source)
+      {
+        mValue.Add(json.DeepCopy());
+      }
+    }
+
+    /// <summary>
     /// Read a JSON value (presumes the key has already been read) and set the
     /// underlying value. There's generally no reason to call this method
     /// directly. It is intended to be overridden by an extended type.

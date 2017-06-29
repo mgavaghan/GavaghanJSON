@@ -120,7 +120,6 @@ namespace Gavaghan.JSON
     {
       get { return mValue; }
     }
-
     /// <summary>
     /// Set the underlying value.
     /// </summary>
@@ -128,6 +127,26 @@ namespace Gavaghan.JSON
     public virtual void SetValue(string value)
     {
       mValue = value;
+    }
+
+    /// <summary>
+    /// Create a prototype instance of the same type.
+    /// </summary>
+    public override IJSONValue CreatePrototype()
+    {
+      return new JSONString();
+    }
+
+    /// <summary>
+    /// Copy the value of another IJSONValue into our underlying value.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public override void CopyValue(IJSONValue value)
+    {
+      if (!GetType().IsAssignableFrom(value.GetType())) throw new Exception("Can't assign a " + value.GetType().Name + " to a " + GetType().Name);
+
+      mValue = (string)value.Value;
     }
 
     /// <summary>

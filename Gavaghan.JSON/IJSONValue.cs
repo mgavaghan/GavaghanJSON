@@ -14,6 +14,23 @@ namespace Gavaghan.JSON
     object Value { get; }
 
     /// <summary>
+    /// Create a prototype instance of the same type.
+    /// </summary>
+    IJSONValue CreatePrototype();
+
+    /// <summary>
+    /// Copy the value of another IJSONValue into our underlying value.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    void CopyValue(IJSONValue value);
+
+    /// <summary>
+    /// Create a deep copy of this instance.
+    /// </summary>
+    IJSONValue DeepCopy();
+
+    /// <summary>
     /// Read a JSON value (presumes the key has already been read) and set the
     /// underlying value. There's generally no reason to call this method
     /// directly. It is intended to be overridden by an extended type.

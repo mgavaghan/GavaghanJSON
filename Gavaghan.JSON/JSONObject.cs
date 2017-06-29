@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Gavaghan.JSON
@@ -41,6 +42,41 @@ namespace Gavaghan.JSON
     public virtual object Value
     {
       get { return this; }
+    }
+
+    /// <summary>
+    /// Create a prototype instance of the same type.
+    /// </summary>
+    public virtual IJSONValue CreatePrototype()
+    {
+      return new JSONObject();
+    }
+
+    /// <summary>
+    /// Copy the value of another IJSONValue into our underlying value.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public virtual void CopyValue(IJSONValue value)
+    {
+      if (!GetType().IsAssignableFrom(value.GetType())) throw new Exception("Can't assign a " + value.GetType().Name + " to a " + GetType().Name);
+
+      JSONObject source = (JSONObject)value.Value;
+
+      foreach (string key in source.Keys)
+      {
+        Add(key, source[key]);
+      }
+    }
+
+    /// <summary>
+    /// Create a deep copy of this instance.
+    /// </summary>
+    public IJSONValue DeepCopy()
+    {
+      IJSONValue copy = CreatePrototype();
+      copy.CopyValue(this);
+      return copy;
     }
 
     /// <summary>

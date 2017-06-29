@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace Gavaghan.JSON
 {
@@ -13,6 +14,24 @@ namespace Gavaghan.JSON
     public override object Value
     {
       get { return null; }
+    }
+
+    /// <summary>
+    /// Create a prototype instance of the same type.
+    /// </summary>
+    public override IJSONValue CreatePrototype()
+    {
+      return this;
+    }
+
+    /// <summary>
+    /// Copy the value of another IJSONValue into our underlying value.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public override void CopyValue(IJSONValue value)
+    {
+      if (!GetType().IsAssignableFrom(value.GetType())) throw new Exception("Can't assign a " + value.GetType().Name + " to a " + GetType().Name);
     }
 
     /// <summary>
