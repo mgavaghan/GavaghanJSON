@@ -7,9 +7,9 @@ using System.IO;
 namespace Gavaghan.JSON.Test
 {
   /// <summary>
-  ///This is a test class for JSONNumberTest and is intended
-  ///to contain all JSONNumberTest Unit Tests
-  ///</summary>
+  /// This is a test class for JSONNumberTest and is intended
+  /// to contain all JSONNumberTest Unit Tests
+  /// </summary>
   [TestClass()]
   public class JSONNumberTest
   {
