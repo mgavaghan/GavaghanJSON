@@ -5,8 +5,11 @@ using System.Reflection;
 namespace Gavaghan.JSON
 {
     /// <summary>
-    /// Factory for determining the proper IJSONValue implementation based on the
-    /// incoming stream.
+    /// Factory for determining the proper<code> JSONValue</code> implementation
+    /// based on the incoming stream.
+    /// 
+    /// Overriding this class allows for custom JSON data types as well as the
+    /// redefinition of whitespace.
     /// </summary>
     public class JSONValueFactory
     {
@@ -163,6 +166,22 @@ namespace Gavaghan.JSON
         }
 
         /// <summary>
+        /// Give subtypes a chance to recast the loaded value as an <code>IJSONValue</code>
+        /// subtype.  Default implementation returns 'null' because no recast is needed.
+        ///
+        /// Subtypes only need to return a default instance.  The <code>read()</code>
+        /// method handles copying of data.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="System.IO.IOException" />
+        /// <exception cref="Gavaghan.JSON.JSONException" />
+        protected IJSONValue Recast(IJSONValue value)
+        {
+            return null;
+        }
+
+        /// <summary>
         /// Create a new JSONValueFactory.
         /// </summary>
         public JSONValueFactory()
@@ -260,9 +279,9 @@ namespace Gavaghan.JSON
         /// <summary>
         /// Read a JSON value.
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="pbr"></param>
-        /// <returns></returns>
+        /// <param name="path">JSON path to the value we're reading</param>
+        /// <param name="pbr">a pushback reader</param>
+        /// <returns>the next JSON value</returns>
         /// <exception cref="System.IO.IOException" />
         /// <exception cref="Gavaghan.JSON.JSONException" />
         public IJSONValue Read(string path, PushbackReader pbr)
@@ -311,6 +330,16 @@ namespace Gavaghan.JSON
 
             // implementation specific read
             value.Read(path, pbr);
+
+            // give subtype a chance to select a different implementation
+            IJSONValue recast = Recast(value);
+
+            // if value was recast, copy over original data
+            if (recast != null)
+            {
+                recast.CopyValue(value);
+                value = recast;
+            }
 
             return value;
         }
