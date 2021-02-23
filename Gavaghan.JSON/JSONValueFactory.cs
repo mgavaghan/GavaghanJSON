@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 
 namespace Gavaghan.JSON
 {
@@ -13,6 +14,16 @@ namespace Gavaghan.JSON
         /// The default implementation
         /// </summary>
         static public readonly JSONValueFactory DEFAULT = new JSONValueFactory();
+
+        /// <summary>
+        /// GC safe empty parameters.
+        /// </summary>
+        static protected readonly Type[] NO_PARAMS = new Type[0];
+
+        /// <summary>
+        /// GC safe empty arguments.
+        /// </summary>
+        static protected readonly Object[] NO_ARGS = new Object[0];
 
         /// <summary>
         /// Determine if a character is whitespace.
@@ -156,6 +167,62 @@ namespace Gavaghan.JSON
         /// </summary>
         public JSONValueFactory()
         {
+        }
+
+        /// <summary>
+        /// Get a named value from a <code>JSONObject</code>. If the value
+        /// doesn't exist, make a default instance and add it.
+        /// </summary>
+        /// <param name="jsonObj">the <code>JSONObject</code> to get a value from</param>
+        /// <param name="name"></param>
+        /// <param name="jsonType"></param>
+        /// <returns></returns>
+        static public object GetOrSet(JSONObject jsonObj, String name, Type jsonType)
+        {
+            object retval;
+
+            // look to see if the value already exists
+            IJSONValue jsonValue = null;
+            jsonObj.TryGetValue(name, out jsonValue);
+
+            // if it exists, it's easy - just return it after a type check
+            if (jsonValue != null)
+            {
+                // make sure we got the right object type
+                if (!jsonType.IsAssignableFrom(jsonValue.GetType()))
+                {
+                    throw new Exception(String.Format("Value named '{0}' is of type '{1}' which is not assignable from '{2}'", name, jsonValue.GetType().Name, jsonType.Name));
+                }
+
+                retval = jsonValue.Value;
+            }
+
+            // otherwise, create a default
+            else
+            {
+                // ensure property types
+                if (!typeof(IJSONValue).IsAssignableFrom(jsonType))
+                {
+                    throw new Exception(String.Format("Type '{0}' is not assignable from '{1}'", typeof(IJSONValue).Name, jsonType.Name));
+                }
+
+                try
+                {
+                    ConstructorInfo ctx = jsonType.GetConstructor(NO_PARAMS);
+                    if (ctx == null) throw new Exception("'" + jsonType.Name + "' does not have a public default constructor");
+
+                    IJSONValue newJSON = (IJSONValue)ctx.Invoke(NO_ARGS);
+
+                    jsonObj.Add(name, newJSON);
+                    retval = newJSON.Value;
+                }
+                catch (TargetInvocationException exc)
+                {
+                    throw new Exception("Constructor for '" + jsonType.Name + "' threw an exception", exc.InnerException);
+                }
+            }
+
+            return retval;
         }
 
         /// <summary>

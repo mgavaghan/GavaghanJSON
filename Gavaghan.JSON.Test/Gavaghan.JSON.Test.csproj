@@ -45,6 +45,7 @@
     <Compile Include="JSONNumberTest.cs" />
     <Compile Include="JSONObjectTest.cs" />
     <Compile Include="JSONStringTest.cs" />
+    <Compile Include="JSONValueFactoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
