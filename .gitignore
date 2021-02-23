@@ -12,7 +12,7 @@ bin/
 obj/
 
 TestResults/
-Backup/
+Backup*
 UpgradeLog*
 .vs/
 
