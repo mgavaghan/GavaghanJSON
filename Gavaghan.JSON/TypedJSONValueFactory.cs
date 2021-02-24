@@ -12,15 +12,20 @@ namespace Gavaghan.JSON
     /// </summary>
     public class TypedJSONValueFactory : JSONValueFactory
     {
-         /// <summary>
-         /// Look for the 'type' value in a populated <code>JSONObject</code> and create a
-         /// default instance of it.  If 'value' is not a <code>JSONObject</code> or if
-         /// 'type' value is not found, defer to the super class.
-         /// </summary>
-         /// <param name="path">JSON path to the value we're reading</param>
-         /// <param name="value">the value to possibly recast</param>
-         /// <returns>the recast value or 'null' if no recast was required</returns>
-         /// <exception cref="Gavaghan.JSON.JSONException" />
+        /// <summary>
+        /// The default implementation
+        /// </summary>
+        static public readonly TypedJSONValueFactory TYPED_DEFAULT = new TypedJSONValueFactory();
+
+        /// <summary>
+        /// Look for the 'type' value in a populated <code>JSONObject</code> and create a
+        /// default instance of it.  If 'value' is not a <code>JSONObject</code> or if
+        /// 'type' value is not found, defer to the super class.
+        /// </summary>
+        /// <param name="path">JSON path to the value we're reading</param>
+        /// <param name="value">the value to possibly recast</param>
+        /// <returns>the recast value or 'null' if no recast was required</returns>
+        /// <exception cref="Gavaghan.JSON.JSONException" />
         protected override IJSONValue Recast(string path, IJSONValue value)
         {
             TypedJSONObject retval;

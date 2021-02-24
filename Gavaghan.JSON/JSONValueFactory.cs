@@ -34,7 +34,7 @@ namespace Gavaghan.JSON
         /// </summary>
         /// <param name="c"></param>
         /// <returns></returns>
-        static public bool IsWhitespace(int c)
+        static protected bool IsWhitespace(int c)
         {
             return " \t\n\u000B\f\r\u001C\u001D\u001E\u001F\u000C\u000D\u000E".IndexOf((char)c) >= 0;
         }
@@ -44,7 +44,7 @@ namespace Gavaghan.JSON
         /// </summary>
         /// <param name="pbr">a pushback reader</param>
         /// <exception cref="System.IO.IOException"/>
-        static public void SkipWhitespace(PushbackReader pbr)
+        public virtual void SkipWhitespace(PushbackReader pbr)
         {
             for (; ; )
             {
