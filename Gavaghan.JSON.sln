@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gavaghan.JSON", "Gavaghan.J
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gavaghan.JSON.Test", "Gavaghan.JSON.Test\Gavaghan.JSON.Test.csproj", "{76918EB7-88F2-4BEF-AE9B-D7AE1BBEE694}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prototype", "Prototype\Prototype.csproj", "{962BEF17-48B8-4058-B8E2-8231241B9F27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{76918EB7-88F2-4BEF-AE9B-D7AE1BBEE694}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76918EB7-88F2-4BEF-AE9B-D7AE1BBEE694}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76918EB7-88F2-4BEF-AE9B-D7AE1BBEE694}.Release|Any CPU.Build.0 = Release|Any CPU
+		{962BEF17-48B8-4058-B8E2-8231241B9F27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{962BEF17-48B8-4058-B8E2-8231241B9F27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{962BEF17-48B8-4058-B8E2-8231241B9F27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{962BEF17-48B8-4058-B8E2-8231241B9F27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,6 +41,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B7594260-C2B4-4A0C-B7C3-571A2BEDE9B9} = {2BA3E55F-D8F8-41F8-98B2-AF29AF83EA94}
 		{76918EB7-88F2-4BEF-AE9B-D7AE1BBEE694} = {2BA3E55F-D8F8-41F8-98B2-AF29AF83EA94}
+		{962BEF17-48B8-4058-B8E2-8231241B9F27} = {2BA3E55F-D8F8-41F8-98B2-AF29AF83EA94}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F510B800-B390-4006-99F7-680000CFFD77}

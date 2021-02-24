@@ -47,6 +47,8 @@
     <Compile Include="JSONStringTest.cs" />
     <Compile Include="JSONValueFactoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestTypedJSONObject.cs" />
+    <Compile Include="TypedJSONObjectTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gavaghan.JSON\Gavaghan.JSON.csproj">

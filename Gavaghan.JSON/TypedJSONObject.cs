@@ -19,39 +19,27 @@ namespace Gavaghan.JSON
         /// </summary>
         protected TypedJSONObject()
         {
+            Add(TYPE_KEY, new JSONString(GetType().AssemblyQualifiedName));
         }
 
         /// <summary>
         /// Get the type name of this instance.
         /// </summary>
-        public string Type
-        {
+        public string Type 
+        { 
             get
-            {
-                string retval;
-
-                TryGetValue(TYPE_KEY, out IJSONValue type);
-
-                // if 'type' isn't set, create it
-                if (type == null)
+            { 
+                if (!TryGetValue(TYPE_KEY, out IJSONValue type))
                 {
-                    retval = GetType().FullName;
-
-                    Add(TYPE_KEY, new JSONString(retval));
+                    throw new Exception("Type information is missing");
                 }
 
-                // otherwise, use previously set value
-                else
+                if (!(type is JSONString))
                 {
-                    if (!(type is JSONString))
-                    {
-                        throw new Exception(String.Format("Type value of '{0}' is not an instance of a 'JSONString'", type.GetType().Name));
-                    }
-
-                    retval = ((JSONString)type).StringValue;
+                    throw new Exception(String.Format("Type value of '{0}' is not an instance of a 'JSONString'", type.GetType().Name));
                 }
 
-                return retval;
+                return ((JSONString)type).StringValue;
             }
         }
     }

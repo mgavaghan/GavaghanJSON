@@ -67,12 +67,14 @@ namespace Gavaghan.JSON
         /// <returns></returns>
         public virtual void CopyValue(IJSONValue value)
         {
-            if (!GetType().IsAssignableFrom(value.GetType())) throw new Exception("Can't assign a " + value.GetType().Name + " to a " + GetType().Name);
+            if (!typeof(JSONObject).IsAssignableFrom(value.GetType())) throw new Exception("Can't assign a " + value.GetType().Name + " to a " + GetType().Name);
 
             JSONObject source = (JSONObject)value.Value;
 
             foreach (string key in source.Keys)
             {
+                if (ContainsKey(key))  Remove(key);
+
                 Add(key, source[key]);
             }
         }
