@@ -184,8 +184,7 @@ namespace Gavaghan.JSON
                     writer.Write("\":");
                     if (pretty) writer.Write(" ");
 
-                    IJSONValue value;
-                    TryGetValue(key, out value);
+                    TryGetValue(key, out IJSONValue value);
 
                     value.Write(newIndent, writer, pretty);
 

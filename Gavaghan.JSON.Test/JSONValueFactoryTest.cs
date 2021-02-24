@@ -2,11 +2,13 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Gavaghan.JSON.Test
 {
     public class NoGoodConstructor : IJSONValue
     {
+        [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "API Method")]
         public NoGoodConstructor(int a) { }
 
         public object Value => throw new NotImplementedException();
