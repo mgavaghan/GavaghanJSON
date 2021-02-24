@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractJSONValue.cs" />
+    <Compile Include="CommentedJSONValueFactory.cs" />
     <Compile Include="IJSONValue.cs" />
     <Compile Include="JSONArray.cs" />
     <Compile Include="JSONBoolean.cs" />
