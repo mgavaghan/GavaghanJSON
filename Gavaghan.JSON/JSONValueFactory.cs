@@ -84,8 +84,7 @@ namespace Gavaghan.JSON
         /// <returns></returns>
         /// <exception cref="System.IO.IOException" />
         /// <exception cref="Gavaghan.JSON.JSONException" />
-        [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "API Method")]
-        protected IJSONValue OnString(String path, PushbackReader pbr) => new JSONString();
+        protected virtual IJSONValue OnString(String path, PushbackReader pbr) => new JSONString();
 
         /// <summary>
         /// Callback when a number is encountered.
@@ -95,8 +94,7 @@ namespace Gavaghan.JSON
         /// <returns></returns>
         /// <exception cref="System.IO.IOException" />
         /// <exception cref="Gavaghan.JSON.JSONException" />
-        [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "API Method")]
-        protected IJSONValue OnNumber(String path, PushbackReader pbr) => new JSONNumber();
+        protected virtual IJSONValue OnNumber(String path, PushbackReader pbr) => new JSONNumber();
 
         /// <summary>
         /// Callback when an array is encountered.
@@ -106,8 +104,7 @@ namespace Gavaghan.JSON
         /// <returns></returns>
         /// <exception cref="System.IO.IOException" />
         /// <exception cref="Gavaghan.JSON.JSONException" />
-        [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "API Method")]
-        protected IJSONValue OnArray(String path, PushbackReader pbr) => new JSONArray(this);
+        protected virtual IJSONValue OnArray(String path, PushbackReader pbr) => new JSONArray(this);
 
         /// <summary>
         /// Callback when an object is encountered.
@@ -117,8 +114,7 @@ namespace Gavaghan.JSON
         /// <returns></returns>
         /// <exception cref="System.IO.IOException" />
         /// <exception cref="Gavaghan.JSON.JSONException" />
-        [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "API Method")]
-        protected IJSONValue OnObject(String path, PushbackReader pbr) => new JSONObject(this);
+        protected virtual IJSONValue OnObject(String path, PushbackReader pbr) => new JSONObject(this);
 
         /// <summary>
         /// Callback when a boolean is encountered.
@@ -128,8 +124,7 @@ namespace Gavaghan.JSON
         /// <returns></returns>
         /// <exception cref="System.IO.IOException" />
         /// <exception cref="Gavaghan.JSON.JSONException" />
-        [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "API Method")]
-        protected IJSONValue OnBoolean(String path, PushbackReader pbr) => new JSONBoolean();
+        protected virtual IJSONValue OnBoolean(String path, PushbackReader pbr) => new JSONBoolean();
 
         /// <summary>
         /// Callback when a null is encountered.
@@ -139,8 +134,7 @@ namespace Gavaghan.JSON
         /// <returns></returns>
         /// <exception cref="System.IO.IOException" />
         /// <exception cref="Gavaghan.JSON.JSONException" />
-        [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "API Method")]
-        protected IJSONValue OnNull(String path, PushbackReader pbr) => JSONNull.INSTANCE;
+        protected virtual IJSONValue OnNull(String path, PushbackReader pbr) => JSONNull.INSTANCE;
 
         /// <summary>
         /// Callback for the start of an unknown type.
@@ -150,8 +144,7 @@ namespace Gavaghan.JSON
         /// <returns></returns>
         /// <exception cref="System.IO.IOException" />
         /// <exception cref="Gavaghan.JSON.JSONException" />
-        [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "API Method")]
-        protected IJSONValue OnUnknown(String path, PushbackReader pbr, char c) => throw new JSONException(path, "Illegal start of JSON value: " + c);
+        protected virtual IJSONValue OnUnknown(String path, PushbackReader pbr, char c) => throw new JSONException(path, "Illegal start of JSON value: " + c);
 
         /// <summary>
         /// Give subtypes a chance to recast the loaded value as an <code>IJSONValue</code>
@@ -160,12 +153,11 @@ namespace Gavaghan.JSON
         /// Subtypes only need to return a default instance.  The <code>read()</code>
         /// method handles copying of data.
         /// </summary>
+        /// <param name="path">JSON path to the value we're reading</param>
         /// <param name="value"></param>
         /// <returns></returns>
-        /// <exception cref="System.IO.IOException" />
         /// <exception cref="Gavaghan.JSON.JSONException" />
-        [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "API Method")]
-        protected IJSONValue Recast(IJSONValue value) => null;
+        protected virtual IJSONValue Recast(string path, IJSONValue value) => null;
 
         /// <summary>
         /// Create a new JSONValueFactory.
@@ -317,7 +309,7 @@ namespace Gavaghan.JSON
             value.Read(path, pbr);
 
             // give subtype a chance to select a different implementation
-            IJSONValue recast = Recast(value);
+            IJSONValue recast = Recast(path, value);
 
             // if value was recast, copy over original data
             if (recast != null)
