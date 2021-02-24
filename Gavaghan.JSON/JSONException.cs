@@ -19,6 +19,18 @@ namespace Gavaghan.JSON
         }
 
         /// <summary>
+        /// Create a new JSONException with a specified cause.
+        /// </summary>
+        /// <param name="path">path to the value being read</param>
+        /// <param name="message">a description of the exception</param>
+        /// <param name="cause">cause of the failure</param>
+        public JSONException(string path, string message, Exception cause)
+          : base(path + ": " + message, cause)
+        {
+            Path = path;
+        }
+
+        /// <summary>
         /// Get path to the offending content.
         /// </summary>
         public string Path { get; private set; }
