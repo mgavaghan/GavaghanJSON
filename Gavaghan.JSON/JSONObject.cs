@@ -109,7 +109,7 @@ namespace Gavaghan.JSON
                 string key;
 
                 // next is either a key or a closing brace
-                JSONValueFactory.SkipWhitespace(pbr);
+                mFactory.SkipWhitespace(pbr);
                 c = JSONValueFactory.Demand(pbr);
 
                 // is it a string?
@@ -130,10 +130,10 @@ namespace Gavaghan.JSON
                 }
 
                 // next ought to be a colon
-                JSONValueFactory.SkipWhitespace(pbr);
+                mFactory.SkipWhitespace(pbr);
                 c = JSONValueFactory.Demand(pbr);
                 if (c != ':') throw new JSONException(path + "." + key, "Expected ':' after key value");
-                JSONValueFactory.SkipWhitespace(pbr);
+                mFactory.SkipWhitespace(pbr);
 
                 // next, read a JSONValue
                 IJSONValue value = mFactory.Read(path + "." + key, pbr);
@@ -142,7 +142,7 @@ namespace Gavaghan.JSON
                 Add(key, value);
 
                 // next must be comma or close
-                JSONValueFactory.SkipWhitespace(pbr);
+                mFactory.SkipWhitespace(pbr);
                 c = JSONValueFactory.Demand(pbr);
 
                 if (c == ',') continue;

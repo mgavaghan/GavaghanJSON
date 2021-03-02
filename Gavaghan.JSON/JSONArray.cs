@@ -114,7 +114,7 @@ namespace Gavaghan.JSON
             if (c != '[') throw new JSONException(path, "Content does not appear to be an array.");
 
             // empty array is an easy out
-            JSONValueFactory.SkipWhitespace(pbr);
+            mFactory.SkipWhitespace(pbr);
             c = JSONValueFactory.Demand(pbr);
             if (c == ']') return;
             pbr.Unread(c);
@@ -128,7 +128,7 @@ namespace Gavaghan.JSON
                     mValue.Add(value);
 
                     // get next non-whitespace
-                    JSONValueFactory.SkipWhitespace(pbr);
+                    mFactory.SkipWhitespace(pbr);
                     c = JSONValueFactory.Demand(pbr);
 
                     // is end?
@@ -137,7 +137,7 @@ namespace Gavaghan.JSON
                     // is more
                     if (c == ',')
                     {
-                        JSONValueFactory.SkipWhitespace(pbr);
+                        mFactory.SkipWhitespace(pbr);
                         continue;
                     }
 
