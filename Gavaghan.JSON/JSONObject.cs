@@ -155,8 +155,7 @@ namespace Gavaghan.JSON
         }
 
         /// <summary>
-        /// Render this JSON value to a Writer. There's generally no reason to call
-        /// this method directly. It is intended to be overridden by an extended type.
+        /// Render this JSON value to a Writer.
         /// </summary>
         /// <param name="indent">indent padding</param>
         /// <param name="writer">target writer</param>
@@ -199,6 +198,26 @@ namespace Gavaghan.JSON
                 writer.Write(indent);
                 writer.Write('}');
             }
+        }
+
+        /// <summary>
+        /// Render this JSON value to a Writer.
+        /// <param name="writer">target writer</param>
+        /// <param name="pretty">'true' for pretty-print, 'false' for flat</param>
+        /// <exception cref="System.IO.IOException">on read failure</exception>
+        public void Write(TextWriter writer, bool pretty)
+        {
+            Write("", writer, pretty);
+        }
+
+        /// <summary>
+        /// Render this JSON value to a Writer.
+        /// <param name="writer">target writer</param>
+        /// <param name="pretty">'true' for pretty-print, 'false' for flat</param>
+        /// <exception cref="System.IO.IOException">on read failure</exception>
+        public void Write(TextWriter writer)
+        {
+            Write("", writer, false);
         }
 
         /// <summary>
